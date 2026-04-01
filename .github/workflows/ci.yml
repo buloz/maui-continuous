@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t maui-ci -f ci/Dockerfile .
+
+      - name: Run container
+        run: |
+          mkdir -p artifacts
+          docker run --rm \
+            -v ${{ github.workspace }}/artifacts:/artifacts \
+            maui-ci
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: artifacts
