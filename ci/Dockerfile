@@ -1,4 +1,3 @@
-# Image SDK .NET (preview si .NET 10)
 FROM mcr.microsoft.com/dotnet/sdk:10.0-alpine AS build
 
 RUN apk add --no-cache \
@@ -7,12 +6,15 @@ RUN apk add --no-cache \
     libstdc++ \
     git
 
-RUN dotnet workload install maui-blazor
+ENV CI=true
 
 WORKDIR /workspace
 
+RUN dotnet workload install maui-android
+
 COPY . .
 
-RUN chmod +x /ci/entrypoint.sh
+RUN sed -i 's/\r$//' ci/entrypoint.sh \
+    && chmod +x ci/entrypoint.sh
 
-ENTRYPOINT ["/ci/entrypoint.sh"]
+ENTRYPOINT ["/workspace/ci/entrypoint.sh"]
