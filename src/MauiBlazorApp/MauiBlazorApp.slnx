@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MauiBlazorApp.Tests/MauiBlazorApp.Tests/MauiBlazorApp.Tests.csproj" Id="a45ef97d-54a9-4f0a-9405-e1944ceed1f0" />
+  <Project Path="MauiBlazorApp/MauiBlazorApp.csproj" />
+</Solution>

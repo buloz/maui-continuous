@@ -52,3 +52,17 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+.vs/
+
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+.github/.baseline-state.json
+
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+artifacts/
